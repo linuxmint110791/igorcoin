@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IgorCoin - Koduleht</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Avaleht</a></li>
+                <li><a href="#about">Meist</a></li>
+                <li><a href="#features">Omadused</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h1>IgorCoin - Digitaalne Raha</h1>
+        <p>IgorCoin on uus ja innovatiivne digitaalne valuuta, mis toob rahanduse tulevikku!</p>
+    </section>
+
+    <section id="about">
+        <h2>Meist</h2>
+        <p>IgorCoin on loodud eesmärgiga pakkuda kiiret, turvalist ja soodsa tasudega digitaalset valuutat. Meie missioon on muuta maailm paremaks, kasutades plokiahela tehnoloogiat.</p>
+    </section>
+
+    <section id="features">
+        <h2>Omadused</h2>
+        <ul>
+            <li>Turvaline plokiahela süsteem</li>
+            <li>Madala tasuga tehingud</li>
+            <li>Kiired ja usaldusväärsed tehingud</li>
+            <li>Globaalne ulatus</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Kontakt</h2>
+        <p>Võta meiega ühendust: <a href="ma
+
