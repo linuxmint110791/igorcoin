@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google AI Slop Factory</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#0c0d12;color:#f4f4f5}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 5%,#26316a 0,transparent 35%),radial-gradient(circle at 90% 90%,#4a1749 0,transparent 32%),#0c0d12}
+main{max-width:850px;margin:auto;padding:48px 22px}.tag{color:#a5b4fc;font-weight:800;letter-spacing:.14em;font-size:.75rem}
+h1{font-size:clamp(2.4rem,7vw,5rem);line-height:.95;margin:14px 0}h1 span{color:#a5b4fc}.sub{color:#b7b8c5;line-height:1.6;max-width:650px}
+.panel{margin-top:28px;padding:24px;border:1px solid #34364a;border-radius:20px;background:#151722eF;box-shadow:0 20px 80px #0005}
+label{display:block;font-weight:700;margin:16px 0 8px}input,select,button{font:inherit;border-radius:10px;padding:13px;border:1px solid #41445a;background:#0e1019;color:#fff;width:100%}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}button{margin-top:20px;background:#6366f1;border:0;font-weight:800;cursor:pointer}button:disabled{opacity:.6;cursor:wait}
+#status{font-size:.9rem;color:#a5b4fc;margin-top:12px}#output{white-space:pre-wrap;line-height:1.65;margin-top:22px;padding:20px;background:#0c0e16;border-radius:14px;min-height:90px;border:1px solid #292c3d}
+small{color:#9699aa}.foot{margin-top:22px;color:#888b9d;font-size:.82rem}
+@media(max-width:600px){.grid{grid-template-columns:1fr}main{padding:30px 16px}.panel{padding:18px}}
+</style>
+</head>
+<body><main>
+<div class="tag">IGORCOIN LABS · EXPERIMENTAL COMEDY</div>
+<h1>GOOGLE <span>SLOP</span><br>FACTORY 🤖</h1>
+<p class="sub">Gemini-powered absurdity generator. Feed it a topic and let the machine produce ridiculous memes, fake tech headlines and short-video ideas. Satire only — not real news.</p>
+<section class="panel">
+<label for="theme">Slopi teema</label><input id="theme" value="Google'i kontor läheb täiesti lolliks" maxlength="500">
+<div class="grid">
+<div><label for="format">Sisu formaat</label><select id="format"><option value="short">AI-video ideed</option><option value="meme">Meme ideed</option><option value="headline">Absurdsed uudistepealkirjad</option><option value="story">Lühijutt</option></select></div>
+<div><label for="count">Kogus</label><select id="count"><option>1</option><option selected>3</option><option>5</option></select></div>
+</div>
+<label for="language">Keel</label><select id="language"><option>Estonian</option><option>English</option></select>
+<button id="go">GENEREERI SLOP 🚀</button>
+<div id="status">Kontrollin Gemini ühendust…</div>
+<div id="output">Sinu järgmine internetiõnnetus ilmub siia.</div>
+<div class="foot">Gemini API võti jääb serverisse. Ära jaga .env faili ega API võtit.</div>
+</section>
+</main>
+<script>
+const statusEl=document.querySelector("#status"),out=document.querySelector("#output"),btn=document.querySelector("#go");
+fetch("/api/status").then(r=>r.json()).then(s=>statusEl.textContent=s.configured?"Gemini ühendus valmis · "+s.model:"Gemini API võti puudub — lisa serveris .env faili GEMINI_API_KEY.").catch(()=>statusEl.textContent="Serveriga ei saa ühendust.");
+btn.addEventListener("click",async()=>{btn.disabled=true;btn.textContent="TEHISINTELLEKT MÖLAA…";statusEl.textContent="Gemini toodab kvaliteetset prügi…";out.textContent="Palun oota.";try{const r=await fetch("/api/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({theme:document.querySelector("#theme").value,format:document.querySelector("#format").value,count:document.querySelector("#count").value,language:document.querySelector("#language").value})});const data=await r.json();if(!r.ok)throw new Error(data.error||"Generation failed");out.textContent=data.text;statusEl.textContent="Valmis · "+data.model;}catch(e){out.textContent="Viga: "+e.message;statusEl.textContent="Generatsioon ebaõnnestus.";}finally{btn.disabled=false;btn.textContent="GENEREERI SLOP 🚀";}});
+</script>
+</body></html>
